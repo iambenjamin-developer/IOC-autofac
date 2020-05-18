@@ -9,26 +9,30 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
     public class UsuariosController : Controller
     {
         // GET: Usuarios
-        public ActionResult Index()
+        public ActionResult Listar()
         {
             return View();
         }
+
+
 
         // GET: Usuarios/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Detalles(int id)
         {
             return View();
         }
 
+
+
         // GET: Usuarios/Create
-        public ActionResult Create()
+        public ActionResult Crear()
         {
             return View();
         }
 
         // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Crear(Models.Usuarios.UsuariosModel modelo)
         {
             try
             {
@@ -42,15 +46,17 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
             }
         }
 
+
+
         // GET: Usuarios/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Editar(int id)
         {
             return View();
         }
 
         // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Editar(Models.Usuarios.UsuariosModel modelo)
         {
             try
             {
@@ -64,26 +70,13 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
             }
         }
 
+
+
         // GET: Usuarios/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Eliminar(int id)
         {
             return View();
         }
 
-        // POST: Usuarios/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

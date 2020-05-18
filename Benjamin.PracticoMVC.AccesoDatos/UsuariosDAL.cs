@@ -9,20 +9,12 @@ using Dapper;
 
 namespace Benjamin.PracticoMVC.AccesoDatos
 {
-    public class UsuariosDAL
+    public class UsuariosDAL:IUsuarios
     {
         string cadenaConexion = @"Data Source=NOTEBENJA;Initial Catalog=db_practico_benjamin;Integrated Security=True";
 
-        public List<Entidades.Join_UsuariosClientes> Listar()
+        public List<Entidades.Join_UsuariosClientes> ObtenerTodos()
         {
-            /*
-            SELECT USUARIOS.Id AS ID_USUARIO, Roles.Descripcion AS ROL,
-            USUARIOS.Usuario AS USERNAME, USUARIOS.Nombre AS NOMBRES, USUARIOS.Apellido AS APELLIDOS,
-            USUARIOS.FechaCreacion AS FECHA_CREACION, USUARIOS.Activo AS ACTIVO
-            FROM USUARIOS
-            INNER JOIN ROLES ON
-            Usuarios.IdRol = Roles.Id
-            */
 
             List<Entidades.Join_UsuariosClientes> lista = new List<Entidades.Join_UsuariosClientes>();
 
@@ -52,7 +44,31 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
         }
 
-        public int Crear(Entidades.Usuarios obj)
+        public Entidades.Usuarios Obtener(int id)
+        {
+            Entidades.Usuarios obj = new Entidades.Usuarios();
+            StringBuilder consultaSQL = new StringBuilder();
+            /*
+            SELECT Id, IdRol, Usuario, Nombre, Apellido, 
+            Password, PasswordSalt, FechaCreacion, Activo
+            FROM Usuarios
+            WHERE Id = 1
+            */
+            consultaSQL.Append("SELECT Id, IdRol, Usuario, Nombre, Apellido,  ");
+            consultaSQL.Append("Password, PasswordSalt, FechaCreacion, Activo ");
+            consultaSQL.Append("FROM Usuarios ");
+            consultaSQL.Append("WHERE Id = @Id ");
+
+
+            using (var connection = new SqlConnection(cadenaConexion))
+            {
+                obj = connection.QuerySingleOrDefault<Entidades.Usuarios>(consultaSQL.ToString(), new { Id = id });
+            }
+
+            return obj;
+        }
+
+        public int Agregar(Entidades.Usuarios obj)
         {
 
 
@@ -73,23 +89,21 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
                 StringBuilder consultaSQL1 = new StringBuilder();
                 /*
-                UPDATE Usuarios
-                SET IdRol = @IdRol, Usuario = @Usuario, Nombre = @Nombre,
-                Apellido = @Apellido, Password = @Password, PasswordSalt = @PasswordSalt,
-                FechaCreacion = @FechaCreacion, Activo = @Activo
-                WHERE Id = @Id
-                 */
-                consultaSQL1.Append("UPDATE Usuarios ");
-                consultaSQL1.Append("SET IdRol = @IdRol, Usuario = @Usuario, Nombre = @Nombre, ");
-                consultaSQL1.Append("Apellido = @Apellido, Password = @Password, PasswordSalt = @PasswordSalt, ");
-                consultaSQL1.Append("FechaCreacion = @FechaCreacion, Activo = @Activo ");
-                consultaSQL1.Append("WHERE Id = @Id ");
+                INSERT INTO Usuarios (IdRol, Usuario, Nombre, Apellido, 
+                Password, PasswordSalt, FechaCreacion, Activo)
+                VALUES  (@IdRol, @Usuario, @Nombre, @Apellido, 
+                @Password, @PasswordSalt, @FechaCreacion, @Activo)
+                */
+                consultaSQL1.Append("INSERT INTO Usuarios (IdRol, Usuario, Nombre, Apellido, ");
+                consultaSQL1.Append("Password, PasswordSalt, FechaCreacion, Activo) ");
+                consultaSQL1.Append("VALUES  (@IdRol, @Usuario, @Nombre, @Apellido, ");
+                consultaSQL1.Append("@Password, @PasswordSalt, @FechaCreacion, @Activo) ");
+
 
 
                 filasAfectadas = conexion.Execute(consultaSQL1.ToString(),
                        new
                        {
-                           Id = obj.Id,
                            IdRol = obj.IdRol,
                            Usuario = obj.Usuario,
                            Nombre = obj.Nombre,
@@ -123,7 +137,7 @@ namespace Benjamin.PracticoMVC.AccesoDatos
             return filasAfectadas;
         }
 
-        public int Editar(Entidades.Usuarios obj)
+        public int Actualizar(Entidades.Usuarios obj)
         {
 
 
@@ -146,12 +160,18 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
                 //primer consulta que inserta un nuevo usuario admin o cliente
                 StringBuilder consultaSQL1 = new StringBuilder();
-
+                /*
+                UPDATE Usuarios
+                SET IdRol = @IdRol, Usuario = @Usuario, Nombre = @Nombre,
+                Apellido = @Apellido, Password = @Password, PasswordSalt = @PasswordSalt,
+                FechaCreacion = @FechaCreacion, Activo = @Activo
+                WHERE Id = @Id
+                */
                 consultaSQL1.Append("UPDATE Usuarios ");
-                consultaSQL1.Append("SET IdRol = @idRolParametro,  ");
-                consultaSQL1.Append("Nombre = @nombreParametro, Apellido = @apellidoParametro, ");
-                consultaSQL1.Append("Activo = @activoParametro ");
-                consultaSQL1.Append("WHERE ID = @idParametro ");
+                consultaSQL1.Append("SET IdRol = @IdRol, Usuario = @Usuario, Nombre = @Nombre, ");
+                consultaSQL1.Append("Apellido = @Apellido, Password = @Password, PasswordSalt = @PasswordSalt, ");
+                consultaSQL1.Append("FechaCreacion = @FechaCreacion, Activo = @Activo ");
+                consultaSQL1.Append("WHERE Id = @Id ");
 
 
 
@@ -192,6 +212,14 @@ namespace Benjamin.PracticoMVC.AccesoDatos
             return filasAfectadas;
 
         }
+
+        public Entidades.Usuarios EjecutarBaja(int id)
+        {
+            Entidades.Usuarios obj = new Entidades.Usuarios();
+
+            return obj;
+        }
+
 
 
 
