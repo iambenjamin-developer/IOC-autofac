@@ -191,6 +191,7 @@
     <Content Include="Scripts\Custom\redireccionar.js" />
     <Content Include="Scripts\Custom\test.js" />
     <Content Include="Scripts\Custom\usuarios.js" />
+    <Content Include="Scripts\Custom\vistaListar.js" />
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\datepickers.js" />
     <Content Include="Scripts\es.min.js" />

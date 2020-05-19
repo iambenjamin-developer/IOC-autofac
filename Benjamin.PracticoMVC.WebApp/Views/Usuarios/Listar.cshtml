@@ -3,6 +3,7 @@
     ViewBag.Title = "Listar";
 }
 
+
 <h2>Listar Usuarios</h2>
 
 <div>
@@ -58,7 +59,7 @@
 
                     <button class="btn btn-info" onclick="location.href='@Url.Action("Detalles", "Usuarios",  new { id = obj.ID_USUARIO })'"><i class="fas fa-info-circle"></i></button>
                     <button class="btn btn-warning" onclick="location.href='@Url.Action("Editar", "Usuarios",  new { id = obj.ID_USUARIO})'"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuarios",  new { id = obj.ID_USUARIO })'"><i class="fas fa-trash-alt"></i></button>
+                    <button class="btn btn-danger" onclick="confirmar(@obj.ID_USUARIO)"><i class="fas fa-trash-alt"></i></button>
 
                 </td>
 
@@ -73,4 +74,4 @@
 </table>
 
 
-<script src="~/Scripts/Custom/test.js"></script>
+<script src="~/Scripts/Custom/vistaListar.js"></script>
