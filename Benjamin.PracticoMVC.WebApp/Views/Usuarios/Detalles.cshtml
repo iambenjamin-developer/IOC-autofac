@@ -8,58 +8,43 @@
 
 
 <div class="col-md-6">
-    @using (Html.BeginForm("Crear", "Usuarios", FormMethod.Post, null))
-    {
-
-       
-        @Html.EditorFor(Model => Model.DetalleUsuario.ID_USUARIO, new
-        {
-            htmlAttributes = new { @class = "form-control d-none", @readonly = "readonly" }
-        })
-        <br />
-
-        @Html.LabelFor(Model => Model.DetalleUsuario.ROL, "Rol:")
-        @Html.EditorFor(Model => Model.DetalleUsuario.ROL, new
-        {
-            htmlAttributes = new { @class = "form-control", @readonly = "readonly" }
-        })
-        <br />
 
 
-        @Html.LabelFor(Model => Model.DetalleUsuario.USERNAME, "Usuario:")
-        @Html.EditorFor(Model => Model.DetalleUsuario.USERNAME, new
-        {
-            htmlAttributes = new { @class = "form-control", @readonly = "readonly" }
-        })
-        <br />
+    <table class="table">
+        <tr>
+            <td>Rol:</td>
+            <td>@Model.DetalleUsuario.ROL</td>
+        </tr>
+
+        <tr>
+            <td>Usuario:</td>
+            <td>@Model.DetalleUsuario.USERNAME</td>
+        </tr>
 
 
-
-        @Html.LabelFor(Model => Model.DetalleUsuario.NOMBRES, "Nombres:")
-        @Html.EditorFor(Model => Model.DetalleUsuario.NOMBRES, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-        <br />
-
-
-        @Html.LabelFor(Model => Model.DetalleUsuario.APELLIDOS, "Apellidos:")
-        @Html.EditorFor(Model => Model.DetalleUsuario.APELLIDOS, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-        <br />
+        <tr>
+            <td>Nombres:</td>
+            <td>@Model.DetalleUsuario.NOMBRES</td>
+        </tr>
 
 
-        @Html.LabelFor(Model => Model.DetalleUsuario.FECHA_CREACION, "Fecha de Creación:")
-        @Html.EditorFor(Model => Model.DetalleUsuario.FECHA_CREACION, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-        <br />
+        <tr>
+            <td>Apellidos:</td>
+            <td>@Model.DetalleUsuario.APELLIDOS</td>
+        </tr>
 
 
-        @Html.LabelFor(Model => Model.DetalleUsuario.ESTADO, "Estado:")
-        @Html.EditorFor(Model => Model.DetalleUsuario.ESTADO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-        <br />
+        <tr>
+            <td>Fecha de Creación:</td>
+            <td>@Model.DetalleUsuario.FECHA_CREACION.ToShortDateString()</td>
+        </tr>
 
+        <tr>
+            <td>Estado:</td>
+            <td>@Model.DetalleUsuario.ESTADO</td>
+        </tr>
+    </table>
 
-
-
-
-
-    }
 
 </div>
 
