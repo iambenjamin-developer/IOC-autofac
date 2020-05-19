@@ -20,7 +20,7 @@ namespace Benjamin.PracticoMVC.Entidades
 
         public DateTime FECHA_CREACION { get; set; }
 
-        public bool ACTIVO { get; set; }
+        public string ESTADO { get; set; }
 
         
 

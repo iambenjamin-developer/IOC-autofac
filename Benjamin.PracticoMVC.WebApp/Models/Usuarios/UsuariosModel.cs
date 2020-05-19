@@ -11,9 +11,11 @@ namespace Benjamin.PracticoMVC.WebApp.Models.Usuarios
 
         public List<Entidades.Join_UsuariosClientes> ListaDeUsuarios { get; set; }
 
+        public Entidades.Usuarios UsuarioObjeto { get; set; }
+
         public SelectList ListaDeRoles { get; set; }
 
-        public DateTime Hora { get; set; }
+        public string IdRolSeleccionado { get; set; }
 
         public string Mensaje { get; set; }
 

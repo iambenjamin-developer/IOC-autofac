@@ -5,6 +5,14 @@
 
 <h2>Listar Usuarios</h2>
 
+<div>
+    <br />
+
+    <input type="button" class="btn btn-outline-info" value="Agregar Persona" onclick="location.href='@Url.Action("Crear", "Usuarios")'" />
+
+    <br />  <br />
+</div>
+
 
 @if (Model.Mensaje != null)
 {
@@ -18,9 +26,6 @@
 }
 
 
-<button id="btnAgregar" name="btnAgregar" class="btn btn-outline-info">@Html.ActionLink("Agregar Usuario", "AgregarUsuario")</button>
-<br />
-<br />
 
 @*TABLA USUARIOS LLENADA CON RAZOR*@
 <table class="table table-striped">
@@ -33,7 +38,7 @@
             <th scope="col">APELLIDOS</th>
             <th scope="col">FECHA DE ALTA</th>
             <th scope="col">ESTADO</th>
-            <th scope="col">ACCIONES</th>
+            <th scope="col" class="text-center">ACCIONES</th>
         </tr>
     </thead>
     <tbody>
@@ -48,10 +53,13 @@
                 <td>@obj.NOMBRES</td>
                 <td>@obj.APELLIDOS</td>
                 <td>@obj.FECHA_CREACION.ToShortDateString()</td>
-                <td>@obj.ACTIVO</td>
+                <td>@obj.ESTADO </td>
                 <td>
-                    <button id="btnEditar" name="btnEditar" class="btn btn-outline-info"> @Html.ActionLink("Editar", "EditarUsuario", "Test", new { idUsuario = obj.ID_USUARIO }, null) </button>
-                   
+
+                    <button class="btn btn-info" onclick="location.href='@Url.Action("Detalles", "Usuarios",  new { id = obj.ID_USUARIO })'"><i class="fas fa-info-circle"></i></button>
+                    <button class="btn btn-warning" onclick="location.href='@Url.Action("Editar", "Usuarios",  new { id = obj.ID_USUARIO})'"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Eliminar", "Usuarios",  new { id = obj.ID_USUARIO })'"><i class="fas fa-trash-alt"></i></button>
+
                 </td>
 
 

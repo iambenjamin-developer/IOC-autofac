@@ -22,18 +22,25 @@ namespace Benjamin.PracticoMVC.AccesoDatos
             /*
             SELECT USUARIOS.Id AS ID_USUARIO, Roles.Descripcion AS ROL,
             USUARIOS.Usuario AS USERNAME, USUARIOS.Nombre AS NOMBRES, USUARIOS.Apellido AS APELLIDOS,
-            USUARIOS.FechaCreacion AS FECHA_CREACION, USUARIOS.Activo AS ACTIVO
+            USUARIOS.FechaCreacion AS FECHA_CREACION, --USUARIOS.Activo AS ACTIVO
+            CASE  
+            WHEN Activo = 1 THEN 'Activo'   
+            ELSE 'BAJA'  
+            END  AS ESTADO
             FROM USUARIOS
             INNER JOIN ROLES ON
             Usuarios.IdRol = Roles.Id
             */
             consultaSQL.Append("SELECT USUARIOS.Id AS ID_USUARIO, Roles.Descripcion AS ROL, ");
             consultaSQL.Append("USUARIOS.Usuario AS USERNAME, USUARIOS.Nombre AS NOMBRES, USUARIOS.Apellido AS APELLIDOS, ");
-            consultaSQL.Append("USUARIOS.FechaCreacion AS FECHA_CREACION, USUARIOS.Activo AS ACTIVO ");
+            consultaSQL.Append("USUARIOS.FechaCreacion AS FECHA_CREACION, ");
+            consultaSQL.Append("CASE ");
+            consultaSQL.Append("WHEN Activo = 1 THEN 'Activo' ");
+            consultaSQL.Append("ELSE 'BAJA' ");
+            consultaSQL.Append("END  AS ESTADO ");
             consultaSQL.Append("FROM USUARIOS ");
             consultaSQL.Append("INNER JOIN ROLES ON ");
             consultaSQL.Append("Usuarios.IdRol = Roles.Id ");
-
 
             using (var connection = new SqlConnection(cadenaConexion))
             {
