@@ -9,7 +9,7 @@ using Dapper;
 
 namespace Benjamin.PracticoMVC.AccesoDatos
 {
-    public class UsuariosDAL:IUsuarios
+    public class UsuariosDAL : IUsuarios
     {
         string cadenaConexion = @"Data Source=NOTEBENJA;Initial Catalog=db_practico_benjamin;Integrated Security=True";
 
@@ -25,7 +25,7 @@ namespace Benjamin.PracticoMVC.AccesoDatos
             USUARIOS.FechaCreacion AS FECHA_CREACION, --USUARIOS.Activo AS ACTIVO
             CASE  
             WHEN Activo = 1 THEN 'Activo'   
-            ELSE 'BAJA'  
+            ELSE 'Baja'  
             END  AS ESTADO
             FROM USUARIOS
             INNER JOIN ROLES ON
@@ -36,7 +36,7 @@ namespace Benjamin.PracticoMVC.AccesoDatos
             consultaSQL.Append("USUARIOS.FechaCreacion AS FECHA_CREACION, ");
             consultaSQL.Append("CASE ");
             consultaSQL.Append("WHEN Activo = 1 THEN 'Activo' ");
-            consultaSQL.Append("ELSE 'BAJA' ");
+            consultaSQL.Append("ELSE 'Baja' ");
             consultaSQL.Append("END  AS ESTADO ");
             consultaSQL.Append("FROM USUARIOS ");
             consultaSQL.Append("INNER JOIN ROLES ON ");
@@ -169,13 +169,13 @@ namespace Benjamin.PracticoMVC.AccesoDatos
                 StringBuilder consultaSQL1 = new StringBuilder();
                 /*
                 UPDATE Usuarios
-                SET IdRol = @IdRol, Usuario = @Usuario, Nombre = @Nombre,
+                SET IdRol = @IdRol, Nombre = @Nombre,
                 Apellido = @Apellido, Password = @Password, PasswordSalt = @PasswordSalt,
                 FechaCreacion = @FechaCreacion, Activo = @Activo
                 WHERE Id = @Id
                 */
                 consultaSQL1.Append("UPDATE Usuarios ");
-                consultaSQL1.Append("SET IdRol = @IdRol, Usuario = @Usuario, Nombre = @Nombre, ");
+                consultaSQL1.Append("SET IdRol = @IdRol, Nombre = @Nombre, ");
                 consultaSQL1.Append("Apellido = @Apellido, Password = @Password, PasswordSalt = @PasswordSalt, ");
                 consultaSQL1.Append("FechaCreacion = @FechaCreacion, Activo = @Activo ");
                 consultaSQL1.Append("WHERE Id = @Id ");
@@ -185,15 +185,15 @@ namespace Benjamin.PracticoMVC.AccesoDatos
                 filasAfectadas = conexion.Execute(consultaSQL1.ToString(),
                        new
                        {
-                           Id = obj.Id,
+
                            IdRol = obj.IdRol,
-                           Usuario = obj.Usuario,
                            Nombre = obj.Nombre,
                            Apellido = obj.Apellido,
                            Password = "ClaveHash" + obj.Usuario,
                            PasswordSalt = "ClaveSalt" + obj.Usuario,
                            FechaCreacion = DateTime.Now,
-                           Activo = obj.Activo
+                           Activo = obj.Activo,
+                           Id = obj.Id
                        }
                        , transaction: transaccion);
 
@@ -220,11 +220,59 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
         }
 
-        public Entidades.Usuarios EjecutarBaja(int id)
+        public int EjecutarBaja(int id)
         {
-            Entidades.Usuarios obj = new Entidades.Usuarios();
 
-            return obj;
+            int filasAfectadas = 0;
+
+            SqlConnection conexion = new SqlConnection(cadenaConexion);
+
+            conexion.Open();
+
+            //como vamos a realizar dos inserciones debemos hacerlo con una transaccion
+            var transaccion = conexion.BeginTransaction();
+
+
+            try
+            {
+
+                //primer consulta que inserta un nuevo usuario admin o cliente
+                StringBuilder consultaSQL1 = new StringBuilder();
+                /*
+                UPDATE Usuarios
+                SET Activo = 0
+                WHERE Id = 1
+                */
+                consultaSQL1.Append("UPDATE Usuarios ");
+                consultaSQL1.Append("SET Activo = 0 ");
+                consultaSQL1.Append("WHERE Id = @Id ");
+
+
+                filasAfectadas = conexion.Execute(consultaSQL1.ToString(),
+                       new { Id = id }
+                       , transaction: transaccion);
+
+
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+                // en caso que haya un error en el medio de la funcion
+                //lanzamos codigo de error 0 y realizamos un rollback para que los datos
+                //no se reflejen en la base de datos
+                filasAfectadas = 0;
+                transaccion.Rollback();
+
+            }
+            finally
+            {
+                //si el procedimiento salio bien o mal, siempre se debe cerrar la conexion
+                conexion.Close();
+            }
+
+            // si el resultado de filasafectadas es 1 es porque salio OK
+            return filasAfectadas;
+
         }
 
 

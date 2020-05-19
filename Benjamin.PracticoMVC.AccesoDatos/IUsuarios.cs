@@ -17,7 +17,7 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
         int Actualizar(Entidades.Usuarios obj);
 
-        Entidades.Usuarios EjecutarBaja(int id);
+        int EjecutarBaja(int id);
 
 
 

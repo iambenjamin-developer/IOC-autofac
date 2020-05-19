@@ -37,10 +37,6 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
         }
 
 
-
-
-
-
         // GET: Usuarios/Create
         public ActionResult Crear()
         {
@@ -70,7 +66,7 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
                 {
                     model.Mensaje = "Usuario: " + model.UsuarioObjeto.Usuario +
                         " (" + model.UsuarioObjeto.Apellido + " " + model.UsuarioObjeto.Nombre
-                        + ") agregad@ con éxito!";
+                        + ") agregado con éxito!";
 
                 }
 
@@ -83,29 +79,45 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
         }
 
 
-
-        // GET: Usuarios/Details/5
-        public ActionResult Detalles(int id)
-        {
-            return View();
-        }
-
-
         // GET: Usuarios/Edit/5
         public ActionResult Editar(int id)
         {
-            return View();
+
+            var model = new Models.Usuarios.UsuariosModel();
+
+            model.UsuarioObjeto = usuariosServicio.Obtener(id);
+
+            var datosComboBox = rolesServicio.ObtenerTodos();
+            var comboBox = new SelectList(datosComboBox, "Id", "Descripcion", model.UsuarioObjeto.IdRol);
+            model.ListaDeRoles = comboBox;
+
+            return View(model);
+
         }
 
         // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Editar(Models.Usuarios.UsuariosModel modelo)
+        public ActionResult Editar(Models.Usuarios.UsuariosModel model)
         {
             try
             {
-                // TODO: Add update logic here
+              
+                //asignamos el valor seleccinado del combobox
+                model.UsuarioObjeto.IdRol = model.IdRolSeleccionado;
 
-                return RedirectToAction("Index");
+                int filasAfectadas = usuariosServicio.Actualizar(model.UsuarioObjeto);
+
+
+                if (filasAfectadas == 1)
+                {
+                    model.Mensaje = "Usuario: " + model.UsuarioObjeto.Usuario +
+                        " (" + model.UsuarioObjeto.Apellido + " " + model.UsuarioObjeto.Nombre
+                        + ") editado con éxito!";
+
+                }
+
+                return RedirectToAction("Listar", "Usuarios", model);
+
             }
             catch
             {
@@ -118,8 +130,17 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Eliminar(int id)
         {
-            return View();
+            usuariosServicio.EjecutarBaja(id);
+
+            return RedirectToAction("Listar", "Usuarios");
+
         }
 
+
+        // GET: Usuarios/Details/5
+        public ActionResult Detalles(int id)
+        {
+            return View();
+        }
     }
 }

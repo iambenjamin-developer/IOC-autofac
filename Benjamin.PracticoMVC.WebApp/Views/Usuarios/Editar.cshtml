@@ -1,0 +1,53 @@
+﻿@model Benjamin.PracticoMVC.WebApp.Models.Usuarios.UsuariosModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar Usuario</h2>
+
+
+
+<div class="col-md-6">
+    @using (Html.BeginForm("Editar", "Usuarios", FormMethod.Post, null))
+    {
+
+        @Html.EditorFor(Model => Model.UsuarioObjeto.Id, new { htmlAttributes = new { @class = "form-control d-none" } })
+
+
+        @Html.LabelFor(Model => Model.ListaDeRoles, "Seleccione Rol:")
+        @Html.DropDownListFor(Model => Model.IdRolSeleccionado, Model.ListaDeRoles, htmlAttributes: new { @class = "form-control select2" })
+        @Html.ValidationMessageFor(Model => Model.IdRolSeleccionado, "", new { @class = "input-error" })
+        <br />
+
+        @Html.LabelFor(Model => Model.UsuarioObjeto.Usuario, "Usuario:")
+        @Html.EditorFor(Model => Model.UsuarioObjeto.Usuario, new
+        {
+            htmlAttributes = new { @class = "form-control",  @readonly="readonly" }
+        })
+        <br />
+
+
+
+        @Html.LabelFor(Model => Model.UsuarioObjeto.Nombre, "Nombres:")
+        @Html.EditorFor(Model => Model.UsuarioObjeto.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+        <br />
+
+
+        @Html.LabelFor(Model => Model.UsuarioObjeto.Apellido, "Apellidos:")
+        @Html.EditorFor(Model => Model.UsuarioObjeto.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+        <br />
+
+
+        @Html.LabelFor(Model => Model.UsuarioObjeto.Activo, "Activo:")
+        @Html.EditorFor(Model => Model.UsuarioObjeto.Activo)
+
+
+        <br /><br />
+
+        <input type="submit" value="Enviar" class="btn btn-outline-info" />
+    }
+
+</div>
+
+
+<script src="~/Scripts/Custom/test.js"></script>
