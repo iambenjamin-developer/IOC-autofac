@@ -7,3 +7,8 @@ Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.Entidades\bin\Deb
 Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.Entidades\bin\Debug\Benjamin.PracticoMVC.Entidades.pdb
 Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.Entidades\obj\Debug\Benjamin.PracticoMVC.Entidades.dll
 Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.Entidades\obj\Debug\Benjamin.PracticoMVC.Entidades.pdb
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.Entidades\bin\Debug\Benjamin.PracticoMVC.Entidades.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.Entidades\bin\Debug\Benjamin.PracticoMVC.Entidades.pdb
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.Entidades\obj\Debug\Benjamin.PracticoMVC.Entidades.csprojAssemblyReference.cache
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.Entidades\obj\Debug\Benjamin.PracticoMVC.Entidades.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.Entidades\obj\Debug\Benjamin.PracticoMVC.Entidades.pdb

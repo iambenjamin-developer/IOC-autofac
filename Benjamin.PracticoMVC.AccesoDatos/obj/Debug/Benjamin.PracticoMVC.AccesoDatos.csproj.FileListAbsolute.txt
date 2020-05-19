@@ -20,3 +20,14 @@ Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.AccesoDatos\obj\D
 Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.csproj.CopyComplete
 Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.dll
 Z:\DEVOLUCION\Benjamin.PracticoMVC-master\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.pdb
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Benjamin.PracticoMVC.AccesoDatos.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Benjamin.PracticoMVC.AccesoDatos.pdb
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Benjamin.PracticoMVC.Entidades.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Dapper.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Dapper.SqlBuilder.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Benjamin.PracticoMVC.Entidades.pdb
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\bin\Debug\Dapper.xml
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.csprojAssemblyReference.cache
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.csproj.CopyComplete
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.dll
+Z:\MisProyectos\AUTOFAC\Benjamin.PracticoMVC.AccesoDatos\obj\Debug\Benjamin.PracticoMVC.AccesoDatos.pdb

@@ -8,10 +8,31 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
 {
     public class UsuariosController : Controller
     {
+
+        private readonly AccesoDatos.IUsuarios usuariosServicio;
+        private readonly AccesoDatos.IRoles rolesServicio;
+
+        public UsuariosController(AccesoDatos.IUsuarios srvUsuario, AccesoDatos.IRoles srvRoles)
+        {
+            usuariosServicio = srvUsuario;
+            rolesServicio = srvRoles;
+        }
+
+
         // GET: Usuarios
         public ActionResult Listar()
         {
-            return View();
+
+            var model = new Models.Usuarios.UsuariosModel();
+
+            model.ListaDeUsuarios = usuariosServicio.ObtenerTodos();
+
+            var datosComboBox = rolesServicio.ObtenerTodos();
+            var comboBox = new SelectList(datosComboBox, "Id", "Descripcion");
+            model.ListaDeRoles = comboBox;
+
+            return View(model);
+
         }
 
 

@@ -1,0 +1,68 @@
+﻿@model Benjamin.PracticoMVC.WebApp.Models.Usuarios.UsuariosModel
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar Usuarios</h2>
+
+
+@if (Model.Mensaje != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>@Model.Mensaje</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+}
+
+
+<button id="btnAgregar" name="btnAgregar" class="btn btn-outline-info">@Html.ActionLink("Agregar Usuario", "AgregarUsuario")</button>
+<br />
+<br />
+
+@*TABLA USUARIOS LLENADA CON RAZOR*@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">USUARIO</th>
+            <th scope="col">ROL</th>
+            <th scope="col">NOMBRES</th>
+            <th scope="col">APELLIDOS</th>
+            <th scope="col">FECHA DE ALTA</th>
+            <th scope="col">ESTADO</th>
+            <th scope="col">ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @foreach (var obj in Model.ListaDeUsuarios)
+        {
+            <tr>
+                <td>@obj.ID_USUARIO</td>
+                <td>@obj.USERNAME</td>
+                <td>@obj.ROL</td>
+                <td>@obj.NOMBRES</td>
+                <td>@obj.APELLIDOS</td>
+                <td>@obj.FECHA_CREACION.ToShortDateString()</td>
+                <td>@obj.ACTIVO</td>
+                <td>
+                    <button id="btnEditar" name="btnEditar" class="btn btn-outline-info"> @Html.ActionLink("Editar", "EditarUsuario", "Test", new { idUsuario = obj.ID_USUARIO }, null) </button>
+                   
+                </td>
+
+
+            </tr>
+
+        }
+
+
+
+    </tbody>
+</table>
+
+
+<script src="~/Scripts/Custom/test.js"></script>

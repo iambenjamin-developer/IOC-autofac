@@ -8,7 +8,7 @@ namespace Benjamin.PracticoMVC.WebApp.Models.Test
 {
     public class TestModel
     {
-        public List<Entidades.Join_UsuariosRoles> ListaDeUsuariosyRoles { get; set; }
+        public List<Entidades.Join_UsuariosClientes> ListaDeUsuariosyRoles { get; set; }
 
         
         public Entidades.Join_UsuariosClientes ObjetoUsuarioCliente { get; set; }
