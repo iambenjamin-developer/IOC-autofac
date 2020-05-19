@@ -1,0 +1,67 @@
+﻿@model Benjamin.PracticoMVC.WebApp.Models.Usuarios.UsuariosModel
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles Usuario</h2>
+
+
+
+<div class="col-md-6">
+    @using (Html.BeginForm("Crear", "Usuarios", FormMethod.Post, null))
+    {
+
+       
+        @Html.EditorFor(Model => Model.DetalleUsuario.ID_USUARIO, new
+        {
+            htmlAttributes = new { @class = "form-control d-none", @readonly = "readonly" }
+        })
+        <br />
+
+        @Html.LabelFor(Model => Model.DetalleUsuario.ROL, "Rol:")
+        @Html.EditorFor(Model => Model.DetalleUsuario.ROL, new
+        {
+            htmlAttributes = new { @class = "form-control", @readonly = "readonly" }
+        })
+        <br />
+
+
+        @Html.LabelFor(Model => Model.DetalleUsuario.USERNAME, "Usuario:")
+        @Html.EditorFor(Model => Model.DetalleUsuario.USERNAME, new
+        {
+            htmlAttributes = new { @class = "form-control", @readonly = "readonly" }
+        })
+        <br />
+
+
+
+        @Html.LabelFor(Model => Model.DetalleUsuario.NOMBRES, "Nombres:")
+        @Html.EditorFor(Model => Model.DetalleUsuario.NOMBRES, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        <br />
+
+
+        @Html.LabelFor(Model => Model.DetalleUsuario.APELLIDOS, "Apellidos:")
+        @Html.EditorFor(Model => Model.DetalleUsuario.APELLIDOS, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        <br />
+
+
+        @Html.LabelFor(Model => Model.DetalleUsuario.FECHA_CREACION, "Fecha de Creación:")
+        @Html.EditorFor(Model => Model.DetalleUsuario.FECHA_CREACION, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        <br />
+
+
+        @Html.LabelFor(Model => Model.DetalleUsuario.ESTADO, "Estado:")
+        @Html.EditorFor(Model => Model.DetalleUsuario.ESTADO, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        <br />
+
+
+
+
+
+
+    }
+
+</div>
+
+
+<script src="~/Scripts/Custom/test.js"></script>

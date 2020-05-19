@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Data.SqlClient;
 using Dapper;
+using Benjamin.PracticoMVC.Entidades;
 
 namespace Benjamin.PracticoMVC.AccesoDatos
 {
@@ -275,10 +276,47 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
         }
 
+        public Entidades.Join_UsuariosClientes Detalle(int id)
+        {
+
+            Entidades.Join_UsuariosClientes obj = new Entidades.Join_UsuariosClientes();
+            StringBuilder consultaSQL = new StringBuilder();
+            /*
+            SELECT USUARIOS.Id AS ID_USUARIO, Roles.Descripcion AS ROL,
+            USUARIOS.Usuario AS USERNAME, USUARIOS.Nombre AS NOMBRES, USUARIOS.Apellido AS APELLIDOS,
+            USUARIOS.FechaCreacion AS FECHA_CREACION,
+            CASE  
+            WHEN Activo = 1 THEN 'Activo'   
+            ELSE 'Baja'  
+            END  AS ESTADO
+            FROM USUARIOS
+            INNER JOIN ROLES ON
+            Usuarios.IdRol = Roles.Id
+            WHERE Usuarios.Id = 4
+            */
+
+            consultaSQL.Append("SELECT USUARIOS.Id AS ID_USUARIO, Roles.Descripcion AS ROL, ");
+            consultaSQL.Append("USUARIOS.Usuario AS USERNAME, USUARIOS.Nombre AS NOMBRES, USUARIOS.Apellido AS APELLIDOS, ");
+            consultaSQL.Append("USUARIOS.FechaCreacion AS FECHA_CREACION, ");
+            consultaSQL.Append("CASE ");
+            consultaSQL.Append("WHEN Activo = 1 THEN 'Activo' ");
+            consultaSQL.Append("ELSE 'Baja' ");
+            consultaSQL.Append("END  AS ESTADO ");
+            consultaSQL.Append("FROM USUARIOS ");
+            consultaSQL.Append("INNER JOIN ROLES ON ");
+            consultaSQL.Append("Usuarios.IdRol = Roles.Id ");
+            consultaSQL.Append("WHERE Usuarios.Id = @idUsuario ");
 
 
 
+            using (var connection = new SqlConnection(cadenaConexion))
+            {
+                obj = connection.QuerySingleOrDefault<Entidades.Join_UsuariosClientes>(consultaSQL.ToString(), new { idUsuario = id });
+            }
+
+            return obj;
 
 
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Benjamin.PracticoMVC.AccesoDatos
 
         int EjecutarBaja(int id);
 
-
+        Entidades.Join_UsuariosClientes Detalle(int id);
 
 
     }

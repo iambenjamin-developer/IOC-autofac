@@ -140,7 +140,11 @@ namespace Benjamin.PracticoMVC.WebApp.Controllers
         // GET: Usuarios/Details/5
         public ActionResult Detalles(int id)
         {
-            return View();
+            var model = new Models.Usuarios.UsuariosModel();
+
+            model.DetalleUsuario = usuariosServicio.Detalle(id);
+
+            return View(model);
         }
     }
 }
